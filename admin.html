@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>الحساب - Enzo Store</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-page="admin">
+  <div class="site-bg"></div>
+
+  <header class="header">
+    <div class="brand" id="brandHomeBtn">
+      <img src="logo.png" alt="شعار Enzo Store" class="brand-logo-img" />
+      <div class="brand-text">
+        <h1>Enzo Store</h1>
+        <p>الحساب</p>
+      </div>
+    </div>
+
+    <nav class="nav">
+      <a href="index.html#home">الرئيسية</a>
+      <a href="index.html#products">المنتجات</a>
+      <a href="#accountBox">الحساب</a>
+      <span id="adminNavWrap" class="hidden" style="display: contents;">
+        <a href="#adminProducts">إدارة المنتجات</a>
+        <a href="#adminOrders">الطلبات</a>
+      </span>
+    </nav>
+
+    <div class="header-actions">
+      <button class="icon-btn hidden" id="adminLogoutBtn" title="تسجيل الخروج">⎋</button>
+    </div>
+  </header>
+
+  <section class="admin-section">
+    <div class="admin-login-box" id="accountBox">
+      <h2 style="margin-bottom: 18px;">تسجيل الدخول للحساب</h2>
+
+      <div class="form-group">
+        <label for="adminPhone">رقم الهاتف</label>
+        <input type="tel" id="adminPhone" placeholder="ادخل رقم الهاتف" />
+      </div>
+
+      <div class="form-group">
+        <label for="adminPassword">كلمة المرور</label>
+        <input type="password" id="adminPassword" placeholder="ادخل كلمة المرور" />
+      </div>
+
+      <button class="checkout-btn" id="adminLoginBtn" type="button">دخول</button>
+      <p class="auth-note" id="adminLoginMessage"></p>
+    </div>
+
+    <div class="admin-panel hidden" id="adminPanel">
+      <div class="section-head">
+        <h3 id="adminProducts">إدارة المنتجات</h3>
+        <p>هذه الخصائص تظهر فقط داخل حساب الأدمن.</p>
+      </div>
+
+      <div class="admin-card" style="max-width: 1200px; margin-bottom: 24px; display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap;">
+        <div>
+          <h4 style="margin-bottom:6px;">لوحة التحكم</h4>
+          <p style="color:#c7cde8;">من هنا تكدر تضيف منتج جديد أو تعدل أو تحذف المنتجات.</p>
+        </div>
+
+        <a href="admin-product.html" class="checkout-btn" style="width:auto; text-decoration:none;">
+          إضافة منتج جديد
+        </a>
+      </div>
+
+      <div class="admin-grid">
+        <div class="admin-card">
+          <h4>قائمة المنتجات</h4>
+          <div id="adminProductsList" class="admin-list"></div>
+        </div>
+
+        <div class="admin-card">
+          <h4 id="adminOrders">الطلبات</h4>
+          <div id="adminOrdersList" class="admin-list"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>

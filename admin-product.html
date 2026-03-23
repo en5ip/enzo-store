@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>إضافة / تعديل منتج - Enzo Store</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-page="admin-product">
+  <div class="site-bg"></div>
+
+  <header class="header">
+    <div class="brand" id="brandHomeBtn">
+      <img src="logo.png" alt="شعار Enzo Store" class="brand-logo-img" />
+      <div class="brand-text">
+        <h1>Enzo Store</h1>
+        <p>إدارة المنتج</p>
+      </div>
+    </div>
+
+    <nav class="nav">
+      <a href="index.html#home">الرئيسية</a>
+      <a href="admin.html#adminProducts">الرجوع للإدارة</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="icon-btn" id="adminLogoutBtn" title="تسجيل الخروج">⎋</button>
+    </div>
+  </header>
+
+  <section class="admin-section">
+    <div class="admin-card" style="max-width: 1100px;">
+      <h3 style="margin-bottom: 20px;" id="adminProductPageTitle">إضافة منتج جديد</h3>
+
+      <input type="hidden" id="adminProductId" />
+
+      <div class="admin-grid">
+        <div>
+          <div class="form-group">
+            <label for="adminProductName">اسم المنتج</label>
+            <input type="text" id="adminProductName" placeholder="مثال: منتج 1" />
+          </div>
+
+          <div class="form-group">
+            <label for="adminProductPrice">السعر بالدينار العراقي</label>
+            <input type="number" id="adminProductPrice" placeholder="مثال: 35000" />
+          </div>
+
+          <div class="form-group">
+            <label for="adminProductDescription">شرح المنتج</label>
+            <textarea id="adminProductDescription" placeholder="اكتب وصف المنتج"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="adminProductCategory">القسم</label>
+            <input type="text" id="adminProductCategory" placeholder="مثال: قسم الساعات" />
+          </div>
+
+          <div class="form-group">
+            <label for="adminProductSku">رمز المنتج</label>
+            <input type="text" id="adminProductSku" placeholder="مثال: ENZ-001" />
+          </div>
+
+          <div class="form-group">
+            <label for="adminProductStatus">الحالة</label>
+            <input type="text" id="adminProductStatus" placeholder="مثال: متوفر" />
+          </div>
+        </div>
+
+        <div>
+          <div class="form-group">
+            <label for="adminMainImage">صورة المنتج الرئيسية</label>
+            <input type="file" id="adminMainImage" accept="image/*" />
+          </div>
+
+          <div class="form-group">
+            <label for="adminGalleryImages">صور صفحة المنتج (4 أو 5 صور)</label>
+            <input type="file" id="adminGalleryImages" accept="image/*" multiple />
+          </div>
+
+          <div class="admin-image-preview">
+            <div>
+              <p>معاينة الصورة الرئيسية</p>
+              <div id="adminMainImagePreview" class="image-preview-box">ماكو صورة</div>
+            </div>
+
+            <div>
+              <p>معاينة صور المنتج</p>
+              <div id="adminGalleryPreview" class="gallery-preview-box"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:20px;">
+        <button class="checkout-btn" id="saveProductBtn" type="button" style="width:auto;">حفظ المنتج</button>
+        <button class="secondary-btn" id="resetProductBtn" type="button" style="width:auto;">تفريغ الحقول</button>
+        <a href="admin.html#adminProducts" class="secondary-btn" style="width:auto; text-decoration:none; display:inline-flex; align-items:center; justify-content:center;">إلغاء</a>
+      </div>
+
+      <p class="auth-note" id="adminProductMessage"></p>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>تفاصيل المنتج - Enzo Store</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-page="product">
+  <div class="site-bg"></div>
+
+  <header class="header">
+    <div class="brand" id="brandHomeBtn">
+      <img src="logo.png" alt="شعار Enzo Store" class="brand-logo-img" />
+      <div class="brand-text">
+        <h1>Enzo Store</h1>
+        <p>متجر عصري أنيق</p>
+      </div>
+    </div>
+
+    <nav class="nav">
+      <a href="index.html#home">الرئيسية</a>
+      <a href="index.html#products">المنتجات</a>
+      <a href="index.html#about">من نحن</a>
+      <a href="index.html#contact">تواصل</a>
+      <a href="admin.html">الحساب</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="icon-btn" id="favoritesBtn" title="المفضلة">
+        ❤
+        <span class="badge" id="favoritesCount">0</span>
+      </button>
+
+      <button class="icon-btn cart-btn" id="cartBtn" title="السلة">
+        🛒
+        <span class="badge" id="cartCount">0</span>
+      </button>
+    </div>
+  </header>
+
+  <section class="product-page-section">
+    <div class="product-page-wrap" id="productDetailsContainer"></div>
+  </section>
+
+  <aside class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+      <h3>سلة المشتريات</h3>
+      <button class="close-btn" id="closeCartBtn">✕</button>
+    </div>
+
+    <div class="cart-items" id="cartItems">
+      <div class="empty-state">السلة فارغة حالياً.</div>
+    </div>
+
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>المجموع</span>
+        <strong id="cartTotal">$0</strong>
+      </div>
+      <button class="checkout-btn" id="checkoutBtn">إتمام الطلب</button>
+    </div>
+  </aside>
+
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+
+  <div class="modal-overlay" id="invoiceModal">
+    <div class="invoice-modal-box">
+      <div class="invoice-header">
+        <h3>فاتورة الطلب</h3>
+        <button class="close-btn" id="closeInvoiceBtn">✕</button>
+      </div>
+
+      <div class="invoice-body">
+        <div id="invoiceBody"></div>
+
+        <div class="customer-form">
+          <h4>معلومات الزبون</h4>
+
+          <div class="form-group">
+            <label for="customerName">الاسم الثلاثي</label>
+            <input type="text" id="customerName" placeholder="ادخل الاسم الثلاثي" />
+          </div>
+
+          <div class="form-group">
+            <label for="customerPhone">رقم الهاتف</label>
+            <input type="tel" id="customerPhone" placeholder="ادخل رقم الهاتف" />
+          </div>
+
+          <div class="form-group">
+            <label for="customerLocation">الموقع كتابة</label>
+            <textarea id="customerLocation" placeholder="اكتب الموقع بالتفصيل"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="customerMapLink">رابط الموقع من الخرائط</label>
+            <input type="url" id="customerMapLink" placeholder="الصق رابط Google Maps" />
+          </div>
+
+          <div class="form-group">
+            <label for="customerNotes">ملاحظات الطلب</label>
+            <textarea id="customerNotes" placeholder="أي ملاحظات خاصة بالطلب..."></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="invoice-actions">
+        <button class="secondary-btn" id="closeInvoiceActionBtn">إغلاق</button>
+        <button id="whatsappOrderBtn" class="checkout-btn whatsapp-btn" type="button">
+          إرسال الطلب عبر واتساب
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
