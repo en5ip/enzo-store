@@ -1,241 +1,78 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Enzo Store</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>سياسة الاستبدال والاسترجاع</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-  />
+  <link rel="stylesheet" href="style.css">
 
-  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      padding: 40px;
+      max-width: 800px;
+      margin: auto;
+      color: #c7cde8;
+      line-height: 1.9;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    p {
+      margin-bottom: 10px;
+    }
+
+    .back-btn {
+      display: block;
+      text-align: center;
+      margin-top: 40px;
+      color: #bfc8ff;
+      font-weight: bold;
+      text-decoration: none;
+    }
+  </style>
 </head>
-<body data-page="home">
-  <div class="top-toast" id="topToast">تمت إضافة المنتج إلى السلة</div>
 
-  <div class="intro-screen" id="introScreen">
-    <div class="intro-overlay"></div>
-    <div class="intro-content">
-      <div class="intro-logo-wrap">
-        <img src="logo.png" alt="شعار Enzo Store" class="intro-logo-img" />
-      </div>
-      <h1 class="intro-title">Enzo Store</h1>
-      <p class="intro-subtitle">ستايل . حضور . هيبة</p>
-    </div>
-  </div>
+<body>
 
-  <div class="site-bg"></div>
+<h2>سياسة الاستبدال والاسترجاع</h2>
 
-  <header class="header">
-    <div class="brand" id="brandHomeBtn">
-      <img src="logo.png" alt="شعار Enzo Store" class="brand-logo-img" />
-      <div class="brand-text">
-        <h1>Enzo Store</h1>
-        <p>متجر عصري أنيق</p>
-      </div>
-    </div>
+<p>• في Enzo Store نسعى دائماً لرضا عملائنا، لذلك وفرنا سياسة واضحة للاستبدال والاسترجاع لضمان تجربة تسوق مريحة وآمنة.</p>
 
-    <nav class="nav">
-      <a href="#home" id="navHome">الرئيسية</a>
-      <a href="#products" id="navProducts">المنتجات</a>
-      <a href="#about">من نحن</a>
-      <a href="#contact">تواصل</a>
-      <a href="admin.html">الحساب</a>
-    </nav>
+<p><strong>• شروط الاستبدال والاسترجاع:</strong></p>
+<p>- وجود خلل أو عيب في المنتج<br>
+- وصول منتج مختلف عن المطلوب<br>
+- عدم مطابقة المنتج للوصف</p>
 
-    <div class="header-actions">
-      <button class="icon-btn" id="favoritesBtn" title="المفضلة">
-        ❤
-        <span class="badge" id="favoritesCount">0</span>
-      </button>
+<p><strong>• مدة الطلب:</strong></p>
+<p>- يجب تقديم الطلب خلال مدة لا تتجاوز 24 ساعة من وقت استلام الطلب</p>
 
-      <button class="icon-btn cart-btn" id="cartBtn" title="السلة">
-        🛒
-        <span class="badge" id="cartCount">0</span>
-      </button>
-    </div>
-  </header>
+<p><strong>• حالة المنتج:</strong></p>
+<p>- أن يكون المنتج بحالته الأصلية<br>
+- غير مستخدم<br>
+- مع الحفاظ على التغليف وجميع الملحقات</p>
 
-  <section class="hero" id="home">
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <span class="hero-tag">تشكيلة جديدة</span>
-      <h2>خلّي ستايلك يفرض نفسه</h2>
-      <p>
-        متجر Enzo بواجهة فخمة وعصرية، ومجهز حتى تعرض منتجاتك بشكل مرتب وأنيق.
-      </p>
-      <a href="#products" class="hero-btn" id="heroShopBtn">تسوّق الآن</a>
-    </div>
-  </section>
+<p><strong>• طريقة الطلب:</strong></p>
+<p>- التواصل عبر واتساب<br>
+- توضيح سبب الطلب<br>
+- إرسال صورة عند الحاجة</p>
 
-  <section class="search-section">
-    <div class="search-box">
-      <input type="text" id="searchInput" placeholder="ابحث عن منتج..." />
-      <button id="clearSearchBtn" class="search-icon-btn" title="بحث">
-        <i class="fa-solid fa-magnifying-glass"></i>
-      </button>
-    </div>
-  </section>
+<p><strong>• بعد قبول الطلب:</strong></p>
+<p>- يتم استبدال المنتج بآخر جديد<br>
+- أو إرجاع المبلغ كاملاً في حال الدفع الإلكتروني<br>
+- التوصيل مجاني في حالة الاستبدال</p>
 
-  <main class="products-section" id="products">
-    <div class="section-head">
-      <h3>المنتجات</h3>
-      <p id="productsSectionText">واجهة المنتجات الحالية.</p>
-    </div>
+<p><strong>• حالات لا تشملها السياسة:</strong></p>
+<p>- المنتجات المفتوحة أو المستخدمة جزئياً<br>
+- الطلبات الناتجة عن تغيير الرغبة أو الرأي الشخصي بعد الاستلام بدون سبب يتعلق بالجودة أو المطابقة</p>
 
-    <div class="products-grid" id="productsGrid"></div>
-  </main>
+<p><strong>• ملاحظات:</strong></p>
+<p>- نتعامل مع هذه السياسة بعدالة ووضوح لضمان أفضل تجربة ممكنة في Enzo Store</p>
 
-  <aside class="cart-drawer" id="cartDrawer">
-    <div class="cart-header">
-      <h3>سلة المشتريات</h3>
-      <button class="close-btn" id="closeCartBtn">✕</button>
-    </div>
+<a href="/" class="back-btn">الرجوع إلى المتجر</a>
 
-    <div class="cart-items" id="cartItems">
-      <div class="empty-state">السلة فارغة حالياً.</div>
-    </div>
-
-    <div class="cart-footer">
-      <div class="cart-total">
-        <span>المجموع</span>
-        <strong id="cartTotal">$0</strong>
-      </div>
-      <button class="checkout-btn" id="checkoutBtn">إتمام الطلب</button>
-    </div>
-  </aside>
-
-  <div class="drawer-overlay" id="drawerOverlay"></div>
-
-  <div class="modal-overlay" id="invoiceModal">
-    <div class="invoice-modal-box">
-      <div class="invoice-header">
-        <h3>فاتورة الطلب</h3>
-        <button class="close-btn" id="closeInvoiceBtn">✕</button>
-      </div>
-
-      <div class="invoice-body">
-        <div id="invoiceBody"></div>
-
-        <div class="customer-form">
-          <h4>معلومات الزبون</h4>
-
-          <div class="form-group">
-            <label for="customerName">الاسم الثلاثي</label>
-            <input type="text" id="customerName" placeholder="ادخل الاسم الثلاثي" />
-          </div>
-
-          <div class="form-group">
-            <label for="customerPhone">رقم الهاتف</label>
-            <input type="tel" id="customerPhone" placeholder="ادخل رقم الهاتف" />
-          </div>
-
-          <div class="form-group">
-            <label>الموقع</label>
-            <button type="button" id="getLocationBtn" class="location-btn">تحديد موقعي</button>
-          </div>
-
-          <div class="form-group">
-            <label for="customerLocation">أدخل الموقع يدوياً (المحافظة - المنطقة - أقرب دالة)</label>
-            <textarea id="customerLocation" placeholder="اختياري"></textarea>
-          </div>
-
-          <input type="hidden" id="customerMapLink" />
-
-          <div class="form-group">
-            <label for="customerNotes">ملاحظات الطلب</label>
-            <textarea id="customerNotes" placeholder="أي ملاحظات خاصة بالطلب..."></textarea>
-          </div>
-        </div>
-      </div>
-
-      <div class="invoice-actions">
-        <button class="secondary-btn" id="closeInvoiceActionBtn">إغلاق</button>
-        <button id="whatsappOrderBtn" class="checkout-btn whatsapp-btn" type="button">
-          إرسال الطلب عبر واتساب
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <section class="info-section" id="about">
-    <div class="info-card">
-      <h3>من نحن</h3>
-      <p>
-        في Enzo Store نسعى لتقديم تجربة تسوق إلكترونية سهلة، أنيقة، وعملية، مع توفير منتجات مختارة وعرض واضح يسهّل على العميل الوصول لما يحتاجه بسرعة وبأنسب الأسعار. يمكن إتمام الطلب بكل سهولة من خلال الموقع الإلكتروني أو عبر واتساب، لنضمن تواصلاً أسرع وخدمة أكثر مرونة.
-      </p>
-      <!-- زر السياسة -->
-<div class="policy-toggle" onclick="togglePolicy()" style="margin-top:20px; cursor:pointer; font-weight:700; color:#bfc8ff;">
-  سياسة الاستبدال والاسترجاع
-</div>
-
-<!-- المحتوى المخفي -->
-<div id="policyContent" style="display:none; margin-top:16px; text-align:right; line-height:1.9; color:#c7cde8;">
-
-  <p>• في Enzo Store نسعى دائماً لرضا عملائنا، لذلك وفرنا سياسة واضحة للاستبدال والاسترجاع لضمان تجربة تسوق مريحة وآمنة.</p>
-
-  <p><strong>• شروط الاستبدال والاسترجاع:</strong></p>
-  <p>- وجود خلل أو عيب في المنتج<br>
-  - وصول منتج مختلف عن المطلوب<br>
-  - عدم مطابقة المنتج للوصف</p>
-
-  <p><strong>• مدة الطلب:</strong></p>
-  <p>- يجب تقديم الطلب خلال مدة لا تتجاوز 24 ساعة من وقت استلام الطلب</p>
-
-  <p><strong>• حالة المنتج:</strong></p>
-  <p>- أن يكون المنتج بحالته الأصلية<br>
-  - غير مستخدم<br>
-  - مع الحفاظ على التغليف وجميع الملحقات</p>
-
-  <p><strong>• طريقة الطلب:</strong></p>
-  <p>- التواصل عبر واتساب<br>
-  - توضيح سبب الطلب<br>
-  - إرسال صورة عند الحاجة</p>
-
-  <p><strong>• بعد قبول الطلب:</strong></p>
-  <p>- يتم استبدال المنتج بآخر جديد<br>
-  - أو إرجاع المبلغ كاملاً في حال الدفع الإلكتروني<br>
-  - التوصيل مجاني في حالة الاستبدال</p>
-
-  <p><strong>• حالات لا تشملها السياسة:</strong></p>
-  <p>- المنتجات المفتوحة أو المستخدمة جزئياً<br>
-  - الطلبات الناتجة عن تغيير الرغبة أو الرأي الشخصي بعد الاستلام بدون سبب يتعلق بالجودة أو المطابقة</p>
-
-  <p><strong>• ملاحظات:</strong></p>
-  <p>- نتعامل مع هذه السياسة بعدالة ووضوح لضمان أفضل تجربة ممكنة في Enzo Store</p>
-
-</div>
-    </div>
-  </section>
-
-  <footer class="footer" id="contact">
-    <div class="footer-content">
-      <div>
-        <h4>Enzo Store</h4>
-        <p>تابعنا على مواقع التواصل وابقَ على اطلاع بأحدث المنتجات</p>
-      </div>
-
-      <div class="social-icons">
-        <a href="#" class="social-icon" title="واتساب" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
-        <a href="https://www.instagram.com/en3ip" class="social-icon" title="إنستغرام" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-        <a href="https://www.tiktok.com/@en3ip" class="social-icon" title="تيك توك" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
-        <a href="https://www.facebook.com/en3ip" class="social-icon" title="فيسبوك" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
-      </div>
-    </div>
-  </footer>
-
-  <script src="script.js"></script>
-  <script>
-function togglePolicy() {
-  const box = document.getElementById("policyContent");
-  box.style.display = box.style.display === "none" ? "block" : "none";
-}
-</script>
-  
 </body>
 </html>
