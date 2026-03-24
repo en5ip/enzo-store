@@ -1343,3 +1343,51 @@ button {
     animation: none;
   }
 }
+/* ===== TOP TOAST ===== */
+.top-toast {
+  position: fixed;
+  top: -80px;
+  right: 50%;
+  transform: translateX(50%);
+  background: linear-gradient(135deg, #b5bee7, #8f9adb);
+  color: #06101b;
+  padding: 14px 28px;
+  border-radius: 0 0 16px 16px;
+  font-weight: 800;
+  z-index: 2000;
+  transition: 0.4s ease;
+  box-shadow: 0 10px 25px rgba(120, 136, 215, 0.25);
+}
+
+.top-toast.show {
+  top: 0;
+}
+
+/* ===== ADD TO CART BUTTON ===== */
+.add-cart-btn {
+  background: linear-gradient(135deg, #7c8dff, #5f6ee6);
+  color: #ffffff;
+  font-weight: 800;
+  box-shadow: 0 10px 24px rgba(95, 110, 230, 0.3);
+}
+
+.add-cart-btn:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 14px 28px rgba(95, 110, 230, 0.35);
+}
+
+/* ===== LOCATION BUTTON ===== */
+.location-btn {
+  width: 100%;
+  padding: 14px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #b5bee7, #8f9adb);
+  color: #06101b;
+  font-weight: 800;
+  transition: 0.25s ease;
+  box-shadow: 0 10px 24px rgba(120, 136, 215, 0.2);
+}
+
+.location-btn:hover {
+  transform: translateY(-2px);
+}
