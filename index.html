@@ -16,6 +16,8 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body data-page="home">
+  <div class="top-toast" id="topToast">تمت إضافة المنتج إلى السلة</div>
+
   <div class="intro-screen" id="introScreen">
     <div class="intro-overlay"></div>
     <div class="intro-content">
@@ -134,14 +136,16 @@
           </div>
 
           <div class="form-group">
-            <label for="customerLocation">الموقع كتابة</label>
-            <textarea id="customerLocation" placeholder="اكتب الموقع بالتفصيل"></textarea>
+            <label>الموقع</label>
+            <button type="button" id="getLocationBtn" class="location-btn">تحديد موقعي</button>
           </div>
 
           <div class="form-group">
-            <label for="customerMapLink">رابط الموقع من الخرائط</label>
-            <input type="url" id="customerMapLink" placeholder="الصق رابط Google Maps" />
+            <label for="customerLocation">أدخل الموقع يدوياً (المحافظة - المنطقة - أقرب دالة)</label>
+            <textarea id="customerLocation" placeholder="اختياري"></textarea>
           </div>
+
+          <input type="hidden" id="customerMapLink" />
 
           <div class="form-group">
             <label for="customerNotes">ملاحظات الطلب</label>
@@ -163,7 +167,7 @@
     <div class="info-card">
       <h3>من نحن</h3>
       <p>
-        متجر Enzo بواجهة فخمة وعملية، ومهيأ لعرض المنتجات بشكل أنيق مع طلب مباشر عبر واتساب.
+        في Enzo Store نسعى لتقديم تجربة تسوق إلكترونية سهلة، أنيقة، وعملية، مع توفير منتجات مختارة وعرض واضح يسهّل على العميل الوصول لما يحتاجه بسرعة وبأنسب الأسعار. يمكن إتمام الطلب بكل سهولة من خلال الموقع الإلكتروني أو عبر واتساب، لنضمن تواصلاً أسرع وخدمة أكثر مرونة.
       </p>
     </div>
   </section>
@@ -175,12 +179,12 @@
         <p>تابعنا على مواقع التواصل وابقَ على اطلاع بأحدث المنتجات</p>
       </div>
 
-     <div class="social-icons">
-  <a href="#" class="social-icon" title="واتساب" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
-  <a href="https://www.instagram.com/en3ip" class="social-icon" title="إنستغرام" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-  <a href="https://www.tiktok.com/@en3ip" class="social-icon" title="تيك توك" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
-  <a href="https://www.facebook.com/en3ip" class="social-icon" title="فيسبوك" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
-</div>
+      <div class="social-icons">
+        <a href="#" class="social-icon" title="واتساب" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="https://www.instagram.com/en3ip" class="social-icon" title="إنستغرام" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://www.tiktok.com/@en3ip" class="social-icon" title="تيك توك" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+        <a href="https://www.facebook.com/en3ip" class="social-icon" title="فيسبوك" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+      </div>
     </div>
   </footer>
 
