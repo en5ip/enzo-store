@@ -1414,3 +1414,27 @@ button {
   color: #bfc8ff;
   font-weight: 700;
 }
+.policy-toggle {
+  display: block;
+  text-align: center;
+  margin-top: 25px;
+  padding: 12px 20px;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+
+  background: linear-gradient(135deg, rgba(124,140,255,0.15), rgba(90,107,255,0.15));
+  color: #cfd6ff;
+  font-weight: 700;
+
+  border: 1px solid rgba(124,140,255,0.3);
+  border-radius: 12px;
+
+  transition: 0.3s;
+}
+
+.policy-toggle:hover {
+  background: linear-gradient(135deg, rgba(124,140,255,0.25), rgba(90,107,255,0.25));
+  color: #ffffff;
+  transform: translateY(-2px);
+}
