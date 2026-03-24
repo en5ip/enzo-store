@@ -77,6 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const el = {
     introScreen: byId("introScreen"),
+    topToast: byId("topToast"),
 
     productsGrid: byId("productsGrid"),
     searchInput: byId("searchInput"),
@@ -101,6 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
     customerLocation: byId("customerLocation"),
     customerMapLink: byId("customerMapLink"),
     customerNotes: byId("customerNotes"),
+    getLocationBtn: byId("getLocationBtn"),
     brandHomeBtn: byId("brandHomeBtn"),
     heroShopBtn: byId("heroShopBtn"),
     productDetailsContainer: byId("productDetailsContainer"),
@@ -145,6 +147,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function bindIf(element, eventName, handler) {
     if (element) element.addEventListener(eventName, handler);
+  }
+
+  function showToast(message) {
+    if (!el.topToast) return;
+
+    el.topToast.textContent = message;
+    el.topToast.classList.add("show");
+
+    clearTimeout(showToast.timeoutId);
+    showToast.timeoutId = setTimeout(() => {
+      el.topToast.classList.remove("show");
+    }, 2200);
   }
 
   function initStorage() {
@@ -202,6 +216,7 @@ document.addEventListener("DOMContentLoaded", () => {
     bindIf(el.closeInvoiceActionBtn, "click", closeInvoice);
     bindIf(el.whatsappOrderBtn, "click", sendOrderToWhatsApp);
     bindIf(el.favoritesBtn, "click", renderFavoritesView);
+    bindIf(el.getLocationBtn, "click", getCustomerLocation);
 
     if (el.brandHomeBtn) {
       el.brandHomeBtn.addEventListener("click", () => {
@@ -307,17 +322,22 @@ document.addEventListener("DOMContentLoaded", () => {
                   : `<div class="product-placeholder-text">${product.name}</div>`
               }
             </div>
+          </a>
 
-            <div class="product-info">
-              <h3>${product.name}</h3>
-              <p>${product.description}</p>
+          <div class="product-info">
+            <h3>${product.name}</h3>
+            <p>${product.description}</p>
 
-              <div class="product-bottom">
-                <span class="price">${formatPrice(product.price)}</span>
-                <span class="add-cart-btn product-card-view-btn">عرض المنتج</span>
+            <div class="product-bottom">
+              <span class="price">${formatPrice(product.price)}</span>
+              <div class="product-card-actions">
+                <a href="product.html?id=${product.id}" class="product-detail-btn product-card-view-btn">عرض المنتج</a>
+                <button class="add-cart-btn product-card-view-btn quick-add-btn" type="button" data-id="${product.id}">
+                  أضف للسلة
+                </button>
               </div>
             </div>
-          </a>
+          </div>
         </div>
       `;
     }).join("");
@@ -327,6 +347,14 @@ document.addEventListener("DOMContentLoaded", () => {
         event.preventDefault();
         event.stopPropagation();
         toggleFavorite(Number(button.dataset.id));
+      });
+    });
+
+    document.querySelectorAll(".quick-add-btn").forEach((button) => {
+      button.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        addToCart(Number(button.dataset.id), true);
       });
     });
 
@@ -368,7 +396,7 @@ document.addEventListener("DOMContentLoaded", () => {
     updateCounts();
   }
 
-  function addToCart(id) {
+  function addToCart(id, showMessage = false) {
     const found = cart.find((item) => Number(item.id) === Number(id));
     if (found) {
       found.quantity += 1;
@@ -378,6 +406,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     writeStorage(STORAGE_KEYS.cart, cart);
     renderCart();
+
+    if (showMessage) {
+      showToast("تمت إضافة المنتج إلى السلة");
+    }
   }
 
   function removeFromCart(id) {
@@ -412,7 +444,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const detailed = cart.map((item) => {
       const product = getProductById(item.id);
-      return { ...product, quantity: item.quantity, total: Number(product.price) * Number(item.quantity) };
+      return product
+        ? { ...product, quantity: item.quantity, total: Number(product.price) * Number(item.quantity) }
+        : null;
     }).filter(Boolean);
 
     el.cartItems.innerHTML = detailed.map((item) => `
@@ -467,7 +501,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const detailed = cart.map((item) => {
       const product = getProductById(item.id);
-      return { ...product, quantity: item.quantity, total: Number(product.price) * Number(item.quantity) };
+      return product
+        ? { ...product, quantity: item.quantity, total: Number(product.price) * Number(item.quantity) }
+        : null;
     }).filter(Boolean);
 
     const total = detailed.reduce((sum, item) => sum + item.total, 0);
@@ -501,6 +537,49 @@ document.addEventListener("DOMContentLoaded", () => {
     if (el.invoiceModal) el.invoiceModal.classList.remove("show");
   }
 
+  function getCustomerLocation() {
+    if (!navigator.geolocation) {
+      alert("المتصفح لا يدعم تحديد الموقع.");
+      return;
+    }
+
+    if (el.getLocationBtn) {
+      el.getLocationBtn.textContent = "جاري تحديد الموقع...";
+      el.getLocationBtn.disabled = true;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+        const mapLink = `https://www.google.com/maps?q=${latitude},${longitude}`;
+
+        if (el.customerMapLink) {
+          el.customerMapLink.value = mapLink;
+        }
+
+        if (el.getLocationBtn) {
+          el.getLocationBtn.textContent = "تم تحديد الموقع";
+          el.getLocationBtn.disabled = false;
+        }
+
+        showToast("تم تحديد الموقع بنجاح");
+      },
+      () => {
+        if (el.getLocationBtn) {
+          el.getLocationBtn.textContent = "تحديد موقعي";
+          el.getLocationBtn.disabled = false;
+        }
+        alert("تعذر تحديد الموقع. تأكد من تفعيل إذن الموقع في المتصفح.");
+      },
+      {
+        enableHighAccuracy: true,
+        timeout: 15000,
+        maximumAge: 0,
+      }
+    );
+  }
+
   function sendOrderToWhatsApp() {
     const customerName = el.customerName?.value.trim() || "";
     const customerPhone = el.customerPhone?.value.trim() || "";
@@ -508,14 +587,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const customerMapLink = el.customerMapLink?.value.trim() || "";
     const customerNotes = el.customerNotes?.value.trim() || "";
 
-    if (!customerName || !customerPhone || !customerLocation) {
-      alert("يرجى إدخال الاسم الثلاثي ورقم الهاتف والموقع.");
+    if (!customerName || !customerPhone || (!customerLocation && !customerMapLink)) {
+      alert("يرجى إدخال الاسم الثلاثي ورقم الهاتف وتحديد الموقع أو كتابة الموقع يدوياً.");
       return;
     }
 
     const detailed = cart.map((item) => {
       const product = getProductById(item.id);
-      return { ...product, quantity: item.quantity, total: Number(product.price) * Number(item.quantity) };
+      return product
+        ? { ...product, quantity: item.quantity, total: Number(product.price) * Number(item.quantity) }
+        : null;
     }).filter(Boolean);
 
     const total = detailed.reduce((sum, item) => sum + item.total, 0);
@@ -530,8 +611,8 @@ ${detailed.map((item) => `- ${item.name} | الكمية: ${item.quantity} | ${fo
 معلومات الزبون:
 الاسم الثلاثي: ${customerName}
 رقم الهاتف: ${customerPhone}
-الموقع كتابة: ${customerLocation}
-رابط الموقع من الخرائط: ${customerMapLink || "ما مضاف"}
+الموقع كتابة: ${customerLocation || "ما مضاف"}
+رابط الموقع: ${customerMapLink || "ما مضاف"}
 ملاحظات الطلب: ${customerNotes || "ماكو"}`;
 
     orders.unshift({
@@ -642,7 +723,7 @@ ${detailed.map((item) => `- ${item.name} | الكمية: ${item.quantity} | ${fo
 
     if (addBtn) {
       addBtn.addEventListener("click", () => {
-        addToCart(product.id);
+        addToCart(product.id, true);
         addBtn.textContent = "تمت الإضافة";
         setTimeout(() => {
           addBtn.textContent = "أضف للسلة";
@@ -925,7 +1006,7 @@ ${detailed.map((item) => `- ${item.name} | الكمية: ${item.quantity} | ${fo
         <p>الوقت: ${order.createdAt || "بدون وقت"}</p>
         <p>الاسم: ${order.customerName}</p>
         <p>الرقم: ${order.customerPhone}</p>
-        <p>الموقع: ${order.customerLocation}</p>
+        <p>الموقع: ${order.customerLocation || "ما مضاف"}</p>
         <p>رابط الخرائط: ${order.customerMapLink || "ما مضاف"}</p>
         <p>الملاحظات: ${order.customerNotes || "ماكو"}</p>
         <p>المجموع: ${formatPrice(order.total)}</p>
