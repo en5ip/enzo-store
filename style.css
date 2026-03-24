@@ -1407,3 +1407,10 @@ button {
   background: linear-gradient(135deg, #6676f5, #4f5fe0);
   opacity: 1;
 }
+.policy-toggle {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  color: #bfc8ff;
+  font-weight: 700;
+}
