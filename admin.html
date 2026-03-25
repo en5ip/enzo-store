@@ -85,6 +85,28 @@
     </div>
   </section>
 
+  <div class="modal-overlay" id="deleteConfirmModal">
+    <div class="invoice-modal-box confirm-modal-box">
+      <div class="invoice-header">
+        <h3>تأكيد الحذف</h3>
+        <button class="close-btn" id="closeDeleteConfirmBtn" type="button">✕</button>
+      </div>
+
+      <div class="invoice-body">
+        <p id="deleteConfirmText" style="color:#d6dcf8; line-height:1.9;">
+          هل تريد حذف هذا المنتج؟
+        </p>
+      </div>
+
+      <div class="invoice-actions">
+        <button class="secondary-btn" id="cancelDeleteBtn" type="button">إلغاء</button>
+        <button class="checkout-btn" id="confirmDeleteBtn" type="button">تأكيد الحذف</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toastContainer" class="toast-container"></div>
+
   <script src="script.js"></script>
 </body>
 </html>
