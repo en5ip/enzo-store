@@ -74,6 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let cart = readStorage(STORAGE_KEYS.cart, []);
   let favorites = readStorage(STORAGE_KEYS.favorites, []);
   let orders = readStorage(STORAGE_KEYS.orders, []);
+  let pendingDeleteProductId = null;
 
   const el = {
     introScreen: byId("introScreen"),
@@ -132,6 +133,12 @@ document.addEventListener("DOMContentLoaded", () => {
     saveProductBtn: byId("saveProductBtn"),
     resetProductBtn: byId("resetProductBtn"),
     adminProductMessage: byId("adminProductMessage"),
+
+    deleteConfirmModal: byId("deleteConfirmModal"),
+    closeDeleteConfirmBtn: byId("closeDeleteConfirmBtn"),
+    cancelDeleteBtn: byId("cancelDeleteBtn"),
+    confirmDeleteBtn: byId("confirmDeleteBtn"),
+    deleteConfirmText: byId("deleteConfirmText"),
   };
 
   initShared();
@@ -235,6 +242,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (event.key === "Escape") {
         closeCart();
         closeInvoice();
+        closeDeleteConfirm();
       }
     });
   }
@@ -262,9 +270,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function initAdminPage() {
     if (pageType !== "admin") return;
+
     updateAdminUI();
     bindIf(el.adminLoginBtn, "click", adminLogin);
     bindIf(el.adminLogoutBtn, "click", adminLogout);
+
+    bindIf(el.closeDeleteConfirmBtn, "click", closeDeleteConfirm);
+    bindIf(el.cancelDeleteBtn, "click", closeDeleteConfirm);
+    bindIf(el.confirmDeleteBtn, "click", confirmDeleteProduct);
+
+    bindIf(el.deleteConfirmModal, "click", (event) => {
+      if (event.target === el.deleteConfirmModal) {
+        closeDeleteConfirm();
+      }
+    });
   }
 
   function initAdminProductPage() {
@@ -543,6 +562,45 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function closeInvoice() {
     if (el.invoiceModal) el.invoiceModal.classList.remove("show");
+  }
+
+  function openDeleteConfirm(productId, productName = "هذا المنتج") {
+    pendingDeleteProductId = Number(productId);
+
+    if (el.deleteConfirmText) {
+      el.deleteConfirmText.textContent = `هل تريد حذف المنتج: ${productName} ؟`;
+    }
+
+    if (el.deleteConfirmModal) {
+      el.deleteConfirmModal.classList.add("show");
+    }
+  }
+
+  function closeDeleteConfirm() {
+    pendingDeleteProductId = null;
+
+    if (el.deleteConfirmModal) {
+      el.deleteConfirmModal.classList.remove("show");
+    }
+  }
+
+  function confirmDeleteProduct() {
+    if (pendingDeleteProductId === null) return;
+
+    const id = Number(pendingDeleteProductId);
+
+    products = products.filter((product) => Number(product.id) !== id);
+    cart = cart.filter((item) => Number(item.id) !== id);
+    favorites = favorites.filter((favId) => Number(favId) !== id);
+
+    writeStorage(STORAGE_KEYS.products, products);
+    writeStorage(STORAGE_KEYS.cart, cart);
+    writeStorage(STORAGE_KEYS.favorites, favorites);
+
+    renderAdminProducts();
+    renderAdminOrders();
+    closeDeleteConfirm();
+    showToast("تم حذف المنتج", "error");
   }
 
   function getCustomerLocation() {
@@ -912,7 +970,9 @@ ${detailed.map((item) => `- ${item.name} | الكمية: ${item.quantity} | ${fo
     let mainImageBase64 = "";
     let galleryImagesBase64 = [];
 
-    if (mainImageFile) mainImageBase64 = await fileToBase64(mainImageFile);
+    if (mainImageFile) {
+      mainImageBase64 = await fileToBase64(mainImageFile);
+    }
 
     if (galleryFiles.length) {
       if (galleryFiles.length < 4 || galleryFiles.length > 5) {
@@ -941,6 +1001,7 @@ ${detailed.map((item) => `- ${item.name} | الكمية: ${item.quantity} | ${fo
       });
     } else {
       const newId = products.length ? Math.max(...products.map((p) => Number(p.id))) + 1 : 1;
+
       products.push({
         id: newId,
         name,
@@ -957,7 +1018,10 @@ ${detailed.map((item) => `- ${item.name} | الكمية: ${item.quantity} | ${fo
 
     writeStorage(STORAGE_KEYS.products, products);
 
-    if (el.adminProductMessage) el.adminProductMessage.textContent = "تم حفظ المنتج بنجاح.";
+    if (el.adminProductMessage) {
+      el.adminProductMessage.textContent = "تم حفظ المنتج بنجاح.";
+    }
+
     showToast("تم حفظ المنتج بنجاح", "success");
 
     setTimeout(() => {
@@ -997,20 +1061,8 @@ ${detailed.map((item) => `- ${item.name} | الكمية: ${item.quantity} | ${fo
     el.adminProductsList.querySelectorAll("[data-delete-id]").forEach((button) => {
       button.addEventListener("click", () => {
         const id = Number(button.dataset.deleteId);
-        const confirmed = confirm("هل تريد حذف هذا المنتج؟");
-        if (!confirmed) return;
-
-        products = products.filter((product) => Number(product.id) !== id);
-        cart = cart.filter((item) => Number(item.id) !== id);
-        favorites = favorites.filter((favId) => Number(favId) !== id);
-
-        writeStorage(STORAGE_KEYS.products, products);
-        writeStorage(STORAGE_KEYS.cart, cart);
-        writeStorage(STORAGE_KEYS.favorites, favorites);
-
-        renderAdminProducts();
-        renderAdminOrders();
-        showToast("تم حذف المنتج", "error");
+        const product = getProductById(id);
+        openDeleteConfirm(id, product?.name || "هذا المنتج");
       });
     });
   }
