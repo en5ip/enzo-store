@@ -77,7 +77,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const el = {
     introScreen: byId("introScreen"),
-    topToast: byId("topToast"),
 
     productsGrid: byId("productsGrid"),
     searchInput: byId("searchInput"),
@@ -149,16 +148,22 @@ document.addEventListener("DOMContentLoaded", () => {
     if (element) element.addEventListener(eventName, handler);
   }
 
-  function showToast(message) {
-    if (!el.topToast) return;
+  function showToast(message, type = "info", duration = 2500) {
+    const container = document.getElementById("toastContainer");
+    if (!container) return;
 
-    el.topToast.textContent = message;
-    el.topToast.classList.add("show");
+    const toast = document.createElement("div");
+    toast.className = `toast ${type}`;
+    toast.textContent = message;
 
-    clearTimeout(showToast.timeoutId);
-    showToast.timeoutId = setTimeout(() => {
-      el.topToast.classList.remove("show");
-    }, 2200);
+    container.appendChild(toast);
+
+    setTimeout(() => {
+      toast.classList.add("hide");
+      setTimeout(() => {
+        toast.remove();
+      }, 300);
+    }, duration);
   }
 
   function initStorage() {
@@ -370,7 +375,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const favoriteProducts = products.filter((product) => favorites.includes(product.id));
 
     if (!favoriteProducts.length) {
-      alert("ما عندك منتجات بالمفضلة حالياً.");
+      showToast("ما عندك منتجات بالمفضلة حالياً", "warning");
       return;
     }
 
@@ -381,8 +386,10 @@ document.addEventListener("DOMContentLoaded", () => {
   function toggleFavorite(id) {
     if (favorites.includes(id)) {
       favorites = favorites.filter((favId) => favId !== id);
+      showToast("تمت إزالة المنتج من المفضلة", "info");
     } else {
       favorites.push(id);
+      showToast("تمت إضافة المنتج إلى المفضلة", "success");
     }
 
     writeStorage(STORAGE_KEYS.favorites, favorites);
@@ -408,7 +415,7 @@ document.addEventListener("DOMContentLoaded", () => {
     renderCart();
 
     if (showMessage) {
-      showToast("تمت إضافة المنتج إلى السلة");
+      showToast("تمت إضافة المنتج إلى السلة", "success");
     }
   }
 
@@ -416,6 +423,7 @@ document.addEventListener("DOMContentLoaded", () => {
     cart = cart.filter((item) => Number(item.id) !== Number(id));
     writeStorage(STORAGE_KEYS.cart, cart);
     renderCart();
+    showToast("تم حذف المنتج من السلة", "error");
   }
 
   function changeQty(id, amount) {
@@ -495,7 +503,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function openInvoice() {
     if (!cart.length || !el.invoiceModal || !el.invoiceBody) {
-      if (!cart.length) alert("السلة فارغة.");
+      if (!cart.length) showToast("السلة فارغة", "warning");
       return;
     }
 
@@ -539,7 +547,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function getCustomerLocation() {
     if (!navigator.geolocation) {
-      alert("المتصفح لا يدعم تحديد الموقع.");
+      showToast("المتصفح لا يدعم تحديد الموقع", "error");
       return;
     }
 
@@ -563,14 +571,14 @@ document.addEventListener("DOMContentLoaded", () => {
           el.getLocationBtn.disabled = false;
         }
 
-        showToast("تم تحديد الموقع بنجاح");
+        showToast("تم تحديد الموقع بنجاح", "success");
       },
       () => {
         if (el.getLocationBtn) {
           el.getLocationBtn.textContent = "تحديد موقعي";
           el.getLocationBtn.disabled = false;
         }
-        alert("تعذر تحديد الموقع. تأكد من تفعيل إذن الموقع في المتصفح.");
+        showToast("تعذر تحديد الموقع، تأكد من تفعيل الموقع", "error");
       },
       {
         enableHighAccuracy: true,
@@ -588,7 +596,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const customerNotes = el.customerNotes?.value.trim() || "";
 
     if (!customerName || !customerPhone || (!customerLocation && !customerMapLink)) {
-      alert("يرجى إدخال الاسم الثلاثي ورقم الهاتف وتحديد الموقع أو كتابة الموقع يدوياً.");
+      showToast("يرجى إدخال الاسم ورقم الهاتف وتحديد الموقع", "warning");
       return;
     }
 
@@ -628,7 +636,12 @@ ${detailed.map((item) => `- ${item.name} | الكمية: ${item.quantity} | ${fo
     });
 
     writeStorage(STORAGE_KEYS.orders, orders);
-    window.open(`https://wa.me/9640000000000?text=${encodeURIComponent(message)}`, "_blank");
+
+    showToast("تم تجهيز الطلب وفتح واتساب", "success");
+
+    setTimeout(() => {
+      window.open(`https://wa.me/9640000000000?text=${encodeURIComponent(message)}`, "_blank");
+    }, 400);
   }
 
   function renderProductDetailsPage() {
@@ -751,6 +764,7 @@ ${detailed.map((item) => `- ${item.name} | الكمية: ${item.quantity} | ${fo
     if (logged) {
       renderAdminProducts();
       renderAdminOrders();
+      showToast("تم تسجيل الدخول إلى وضع الإدارة", "success");
     }
   }
 
@@ -764,12 +778,16 @@ ${detailed.map((item) => `- ${item.name} | الكمية: ${item.quantity} | ${fo
       updateAdminUI();
     } else if (el.adminLoginMessage) {
       el.adminLoginMessage.textContent = "هذا الحساب ما عنده صلاحيات الإدارة.";
+      showToast("فشل تسجيل الدخول", "error");
     }
   }
 
   function adminLogout() {
     sessionStorage.removeItem(ADMIN_SESSION_KEY);
-    window.location.href = "admin.html";
+    showToast("تم تسجيل الخروج", "info");
+    setTimeout(() => {
+      window.location.href = "admin.html";
+    }, 300);
   }
 
   function fileToBase64(file) {
@@ -834,6 +852,7 @@ ${detailed.map((item) => `- ${item.name} | الكمية: ${item.quantity} | ${fo
     if (el.adminMainImagePreview) el.adminMainImagePreview.innerHTML = "ماكو صورة";
     if (el.adminGalleryPreview) el.adminGalleryPreview.innerHTML = "";
     if (el.adminProductMessage) el.adminProductMessage.textContent = "";
+    showToast("تم تصفير الحقول", "info");
   }
 
   function loadProductIntoAdminFormIfEditing() {
@@ -883,6 +902,7 @@ ${detailed.map((item) => `- ${item.name} | الكمية: ${item.quantity} | ${fo
 
     if (!name || !price || !description || !category || !sku || !status) {
       if (el.adminProductMessage) el.adminProductMessage.textContent = "يرجى ملء جميع الحقول.";
+      showToast("يرجى ملء جميع الحقول", "warning");
       return;
     }
 
@@ -897,6 +917,7 @@ ${detailed.map((item) => `- ${item.name} | الكمية: ${item.quantity} | ${fo
     if (galleryFiles.length) {
       if (galleryFiles.length < 4 || galleryFiles.length > 5) {
         if (el.adminProductMessage) el.adminProductMessage.textContent = "صور صفحة المنتج لازم تكون 4 أو 5 صور.";
+        showToast("صور صفحة المنتج لازم تكون 4 أو 5 صور", "warning");
         return;
       }
       galleryImagesBase64 = await filesToBase64(galleryFiles);
@@ -937,6 +958,7 @@ ${detailed.map((item) => `- ${item.name} | الكمية: ${item.quantity} | ${fo
     writeStorage(STORAGE_KEYS.products, products);
 
     if (el.adminProductMessage) el.adminProductMessage.textContent = "تم حفظ المنتج بنجاح.";
+    showToast("تم حفظ المنتج بنجاح", "success");
 
     setTimeout(() => {
       window.location.href = "admin.html#adminProducts";
@@ -988,6 +1010,7 @@ ${detailed.map((item) => `- ${item.name} | الكمية: ${item.quantity} | ${fo
 
         renderAdminProducts();
         renderAdminOrders();
+        showToast("تم حذف المنتج", "error");
       });
     });
   }
