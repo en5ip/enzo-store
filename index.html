@@ -8,28 +8,29 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-  />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body data-page="home">
 
+  <!-- INTRO -->
   <div class="intro-screen" id="introScreen">
     <div class="intro-overlay"></div>
+
     <div class="intro-content">
-      <div class="intro-logo-wrap">
-        <img src="logo.png" alt="شعار Enzo Store" class="intro-logo-img" />
-      </div>
+      <img src="logo.png" alt="شعار Enzo Store" class="intro-logo-img" />
+
       <h1 class="intro-title">Enzo Store</h1>
+
       <p class="intro-subtitle">ستايل . حضور . هيبة</p>
     </div>
   </div>
 
   <div class="site-bg"></div>
 
+  <!-- HEADER -->
   <header class="header">
     <div class="brand" id="brandHomeBtn">
       <img src="logo.png" alt="شعار Enzo Store" class="brand-logo-img" />
@@ -40,159 +41,88 @@
     </div>
 
     <nav class="nav">
-      <a href="#home" id="navHome">الرئيسية</a>
-      <a href="#products" id="navProducts">المنتجات</a>
+      <a href="#home">الرئيسية</a>
+      <a href="#products">المنتجات</a>
       <a href="#about">من نحن</a>
       <a href="#contact">تواصل</a>
       <a href="admin.html">الحساب</a>
     </nav>
 
     <div class="header-actions">
-      <button class="icon-btn" id="favoritesBtn" title="المفضلة">
-        ❤
-        <span class="badge" id="favoritesCount">0</span>
-      </button>
-
-      <button class="icon-btn cart-btn" id="cartBtn" title="السلة">
-        🛒
-        <span class="badge" id="cartCount">0</span>
-      </button>
+      <button class="icon-btn" id="favoritesBtn">❤ <span class="badge">0</span></button>
+      <button class="icon-btn cart-btn" id="cartBtn">🛒 <span class="badge">0</span></button>
     </div>
   </header>
 
+  <!-- HERO -->
   <section class="hero" id="home">
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <span class="hero-tag">تشكيلة جديدة</span>
       <h2>خلّي ستايلك يفرض نفسه</h2>
-      <p>
-        متجر Enzo بواجهة فخمة وعصرية، ومجهز حتى تعرض منتجاتك بشكل مرتب وأنيق.
-      </p>
-      <a href="#products" class="hero-btn" id="heroShopBtn">تسوّق الآن</a>
+      <p>متجر Enzo بواجهة فخمة وعصرية</p>
+      <a href="#products" class="hero-btn">تسوّق الآن</a>
     </div>
   </section>
 
+  <!-- SEARCH -->
   <section class="search-section">
     <div class="search-box">
-      <input type="text" id="searchInput" placeholder="ابحث عن منتج..." />
-      <button id="clearSearchBtn" class="search-icon-btn" title="بحث">
-        <i class="fa-solid fa-magnifying-glass"></i>
-      </button>
+      <input type="text" placeholder="ابحث عن منتج..." />
+      <button><i class="fa-solid fa-magnifying-glass"></i></button>
     </div>
   </section>
 
+  <!-- PRODUCTS -->
   <main class="products-section" id="products">
     <div class="section-head">
       <h3>المنتجات</h3>
-      <p id="productsSectionText">واجهة المنتجات الحالية.</p>
+      <p>واجهة المنتجات الحالية.</p>
     </div>
 
-    <div class="products-grid" id="productsGrid"></div>
+    <div class="products-grid"></div>
   </main>
 
-  <aside class="cart-drawer" id="cartDrawer">
-    <div class="cart-header">
-      <h3>سلة المشتريات</h3>
-      <button class="close-btn" id="closeCartBtn">✕</button>
-    </div>
-
-    <div class="cart-items" id="cartItems">
-      <div class="empty-state">السلة فارغة حالياً.</div>
-    </div>
-
-    <div class="cart-footer">
-      <div class="cart-total">
-        <span>المجموع</span>
-        <strong id="cartTotal">$0</strong>
-      </div>
-      <button class="checkout-btn" id="checkoutBtn">إتمام الطلب</button>
-    </div>
-  </aside>
-
-  <div class="drawer-overlay" id="drawerOverlay"></div>
-
-  <div class="modal-overlay" id="invoiceModal">
-    <div class="invoice-modal-box">
-      <div class="invoice-header">
-        <h3>فاتورة الطلب</h3>
-        <button class="close-btn" id="closeInvoiceBtn">✕</button>
-      </div>
-
-      <div class="invoice-body">
-        <div id="invoiceBody"></div>
-
-        <div class="customer-form">
-          <h4>معلومات الزبون</h4>
-
-          <div class="form-group">
-            <label for="customerName">الاسم الثلاثي</label>
-            <input type="text" id="customerName" placeholder="ادخل الاسم الثلاثي" />
-          </div>
-
-          <div class="form-group">
-            <label for="customerPhone">رقم الهاتف</label>
-            <input type="tel" id="customerPhone" placeholder="ادخل رقم الهاتف" />
-          </div>
-
-          <div class="form-group">
-            <label>الموقع</label>
-            <button type="button" id="getLocationBtn" class="location-btn">تحديد موقعي</button>
-          </div>
-
-          <div class="form-group">
-            <label for="customerLocation">أدخل الموقع يدوياً (المحافظة - المنطقة - أقرب دالة)</label>
-            <textarea id="customerLocation" placeholder="اختياري"></textarea>
-          </div>
-
-          <input type="hidden" id="customerMapLink" />
-
-          <div class="form-group">
-            <label for="customerNotes">ملاحظات الطلب</label>
-            <textarea id="customerNotes" placeholder="أي ملاحظات خاصة بالطلب..."></textarea>
-          </div>
-        </div>
-      </div>
-
-      <div class="invoice-actions">
-        <button class="secondary-btn" id="closeInvoiceActionBtn">إغلاق</button>
-        <button id="whatsappOrderBtn" class="checkout-btn whatsapp-btn" type="button">
-          إرسال الطلب عبر واتساب
-        </button>
-      </div>
-    </div>
-  </div>
-
+  <!-- POLICY -->
   <section class="info-section" id="about">
     <div class="info-card">
       <h3>من نحن</h3>
-      <p>
-        في Enzo Store نسعى لتقديم تجربة تسوق إلكترونية سهلة، أنيقة، وعملية، مع توفير منتجات مختارة وعرض واضح يسهّل على العميل الوصول لما يحتاجه بسرعة وبأنسب الأسعار. يمكن إتمام الطلب بكل سهولة من خلال الموقع الإلكتروني أو عبر واتساب، لنضمن تواصلاً أسرع وخدمة أكثر مرونة.
-      </p>
-      </a>
+      <p>تجربة تسوق أنيقة وسهلة</p>
     </div>
+
     <a href="/policy.html" class="policy-toggle">
-  سياسة الاستبدال والاسترجاع
-</a>
+      سياسة الاستبدال والاسترجاع
+    </a>
   </section>
 
+  <!-- FOOTER -->
   <footer class="footer" id="contact">
     <div class="footer-content">
       <div>
         <h4>Enzo Store</h4>
-        <p>تابعنا على مواقع التواصل وابقَ على اطلاع بأحدث المنتجات</p>
+        <p>تابعنا على مواقع التواصل</p>
       </div>
 
       <div class="social-icons">
-        <a href="#" class="social-icon" title="واتساب" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
-        <a href="https://www.instagram.com/en3ip" class="social-icon" title="إنستغرام" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-        <a href="https://www.tiktok.com/@en3ip" class="social-icon" title="تيك توك" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
-        <a href="https://www.facebook.com/en3ip" class="social-icon" title="فيسبوك" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" class="social-icon"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" class="social-icon"><i class="fa-brands fa-tiktok"></i></a>
+        <a href="#" class="social-icon"><i class="fa-brands fa-facebook-f"></i></a>
       </div>
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <!-- INTRO ANIMATION -->
+  <script>
+    window.addEventListener("load", () => {
+      const intro = document.getElementById("introScreen");
 
-  <div id="toastContainer" class="toast-container"></div>
-</body>  
+      setTimeout(() => {
+        intro.style.opacity = "0";
+        intro.style.visibility = "hidden";
+      }, 2000);
+    });
+  </script>
+
+</body>
 </html>
