@@ -110,8 +110,8 @@ button {
 }
 
 .intro-logo-wrap {
-  width: 260px;
-  max-width: 75vw;
+  width: 300px;
+  max-width: 80vw;
   margin: 0 auto 18px;
   display: flex;
   justify-content: center;
@@ -162,11 +162,12 @@ button {
 }
 
 .brand-logo-img {
-  width: 56px;
-  height: 56px;
+  width: 90px;
+  height: 90px;
   object-fit: contain;
   flex-shrink: 0;
-  filter: drop-shadow(0 0 10px rgba(142, 162, 255, 0.18));
+  transform: scale(1.2);
+  filter: drop-shadow(0 0 18px rgba(142, 162, 255, 0.35));
 }
 
 .brand-text h1 {
