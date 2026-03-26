@@ -111,9 +111,9 @@ button {
 }
 
 .intro-logo-wrap {
-  width: 500px;
+  width: 650px;
   max-width: 90%;
-  margin: 40px auto 20px;
+  margin: 60px auto 20px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -123,14 +123,14 @@ button {
   width: 100%;
   height: auto;
   object-fit: contain;
-  transform: scale(1.35);
-  filter: drop-shadow(0 0 40px rgba(120, 160, 255, 0.6));
-  margin-bottom: 15px;
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 50px rgba(120, 160, 255, 0.7));
+  margin-bottom: 20px;
 }
 
 .intro-title {
-  font-size: 30px;
-  margin-bottom: 10px;
+  font-size: 34px;
+  margin-bottom: 15px;
   color: #eef4ff;
 }
 
