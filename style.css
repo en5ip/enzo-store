@@ -110,23 +110,21 @@ button {
 }
 
 .intro-logo-wrap {
-  width: 320px;
-  max-width: 80vw;
+  width: 260px;
+  max-width: 75vw;
   margin: 0 auto 18px;
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: floatLogo 3s ease-in-out infinite;
 }
 
 .intro-logo-img {
-  width: 180px;
-  max-width: 70%;
+  width: 100%;
   height: auto;
   object-fit: contain;
-  filter: drop-shadow(0 0 18px rgba(142, 162, 255, 0.26));
+  transform: scale(1.35);
+  filter: drop-shadow(0 0 25px rgba(120, 160, 255, 0.4));
   margin-bottom: 10px;
-  animation: floatLogo 3s ease-in-out infinite;
 }
 
 .intro-title {
