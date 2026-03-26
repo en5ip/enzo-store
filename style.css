@@ -120,11 +120,12 @@ button {
 }
 
 .intro-logo-img {
-  width: 100%;
+  width: 320px;
+  max-width: 80%;
   height: auto;
   object-fit: contain;
-  transform: scale(1.1);
-  filter: drop-shadow(0 0 50px rgba(120, 160, 255, 0.7));
+  transform: scale(1.2);
+  filter: drop-shadow(0 0 35px rgba(120, 160, 255, 0.5));
   margin-bottom: 20px;
 }
 
@@ -163,12 +164,12 @@ button {
 }
 
 .brand-logo-img {
-  width: 90px;
-  height: 90px;
+  width: 110px;
+  height: auto;
   object-fit: contain;
   flex-shrink: 0;
-  transform: scale(1.25);
-  filter: drop-shadow(0 0 20px rgba(142, 162, 255, 0.4));
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 20px rgba(142, 162, 255, 0.35));
 }
 
 .brand-text h1 {
