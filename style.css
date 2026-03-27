@@ -107,7 +107,7 @@ button {
   justify-content: center;
   text-align: center;
   margin-top: 18px;
-  animation: none;
+  animation: introfadeup 1s ease;
 }
 
 .intro-logo-wrap {
@@ -128,9 +128,7 @@ button {
   margin: 0 auto 18px;
   transform: none;
   animation: none;
-  filter: none;
-  image-rendering: auto;
-  backface-visibility: hidden;
+  filter: drop-shadow(0 0 10px rgba(142, 162, 255, 0.14));
 }
 
 .intro-title {
