@@ -213,6 +213,18 @@ document.addEventListener("DOMContentLoaded", () => {
     return products.find((product) => Number(product.id) === Number(id));
   }
 
+  function getShortDescription(text, maxLength = 88) {
+    const clean = String(text || "").trim();
+    if (clean.length <= maxLength) return clean;
+    return `${clean.slice(0, maxLength).trim()}...`;
+  }
+
+  function getProductBadge(product) {
+    if (!product?.details) return "";
+    if (product.details.availability === "متوفر") return "جاهز";
+    return product.details.availability || "";
+  }
+
   function initShared() {
     initIntroFallback();
 
@@ -357,15 +369,34 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    el.productsGrid.innerHTML = filtered.map((product) => {
+    el.productsGrid.innerHTML = filtered.map((product, index) => {
       const isFavorite = favorites.includes(product.id);
+      const badge = getProductBadge(product);
 
       return `
-        <div class="product-card">
+        <div class="product-card" style="animation: fadeUp 0.55s ease ${index * 0.06}s both;">
           <button class="favorite-toggle ${isFavorite ? "active" : ""}" data-id="${product.id}" title="مفضلة">❤</button>
 
           <a href="product.html?id=${product.id}" class="product-card-link">
             <div class="product-image ${product.mainImage ? "has-image" : ""}">
+              ${
+                badge
+                  ? `<span style="
+                      position:absolute;
+                      top:14px;
+                      right:14px;
+                      z-index:2;
+                      padding:6px 10px;
+                      border-radius:999px;
+                      background:rgba(255,255,255,0.08);
+                      border:1px solid rgba(142,162,255,0.18);
+                      color:#e8eeff;
+                      font-size:0.78rem;
+                      font-weight:700;
+                      backdrop-filter:blur(8px);
+                    ">${badge}</span>`
+                  : ""
+              }
               ${
                 product.mainImage
                   ? `<img src="${product.mainImage}" alt="${product.name}">`
@@ -376,7 +407,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
           <div class="product-info">
             <h3>${product.name}</h3>
-            <p>${product.description}</p>
+            <p>${getShortDescription(product.description)}</p>
 
             <div class="product-bottom">
               <span class="price">${formatPrice(product.price)}</span>
@@ -404,7 +435,16 @@ document.addEventListener("DOMContentLoaded", () => {
       button.addEventListener("click", (event) => {
         event.preventDefault();
         event.stopPropagation();
+
+        const originalText = button.textContent;
         addToCart(Number(button.dataset.id), true);
+        button.textContent = "تمت الإضافة";
+        button.disabled = true;
+
+        setTimeout(() => {
+          button.textContent = originalText;
+          button.disabled = false;
+        }, 900);
       });
     });
 
