@@ -485,7 +485,14 @@ button {
   position: absolute;
   inset: -1px;
   border-radius: 24px;
-  background: linear-gradient(120deg, transparent, rgba(120, 150, 255, 0.22), transparent);
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(120, 150, 255, 0.10) 25%,
+    rgba(170, 190, 255, 0.28) 50%,
+    rgba(120, 150, 255, 0.10) 75%,
+    transparent 100%
+  );
   opacity: 0;
   transition: opacity 0.35s ease;
   z-index: 0;
@@ -516,8 +523,10 @@ button {
 
 .product-card:hover {
   transform: translateY(-10px) scale(1.03);
-  border-color: rgba(140, 170, 255, 0.35);
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
+  border-color: rgba(160, 185, 255, 0.45);
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.8),
+    0 0 22px rgba(110, 145, 255, 0.12);
 }
 
 .product-card:hover::before {
