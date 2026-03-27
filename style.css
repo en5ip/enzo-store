@@ -40,6 +40,10 @@ body {
   overflow-x: hidden;
 }
 
+body.intro-active {
+  overflow: hidden;
+}
+
 a {
   text-decoration: none;
   color: inherit;
@@ -77,19 +81,37 @@ button {
   position: fixed;
   inset: 0;
   background:
-    radial-gradient(circle at center, rgba(124, 148, 255, 0.14), transparent 24%),
+    radial-gradient(circle at center, rgba(124, 148, 255, 0.10), transparent 24%),
     linear-gradient(135deg, #000000, #040a18, #000000);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 9999;
   overflow: hidden;
-  transition: opacity 0.8s ease, visibility 0.8s ease;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.85s ease, visibility 0.85s ease;
+  will-change: opacity;
+}
+
+.intro-screen.show {
+  opacity: 1;
+  visibility: visible;
 }
 
 .intro-screen.hide {
   opacity: 0;
   visibility: hidden;
+}
+
+.intro-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 40%, rgba(142, 162, 255, 0.10), transparent 18%),
+    radial-gradient(circle at 20% 20%, rgba(98, 126, 255, 0.07), transparent 20%),
+    radial-gradient(circle at 80% 70%, rgba(98, 126, 255, 0.06), transparent 22%);
+  pointer-events: none;
 }
 
 .intro-content {
@@ -101,30 +123,34 @@ button {
   justify-content: center;
   text-align: center;
   margin-top: 18px;
-  animation: introFadeUp 1s ease;
+  animation: introFadeUp 0.95s ease;
+  padding: 20px;
 }
 
 .intro-logo-wrap {
-  width: 340px;
-  max-width: 82vw;
+  width: 320px;
+  max-width: 80vw;
   margin: 0 auto 18px;
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: logoFloatSoft 3.2s ease-in-out infinite;
+  animation: logoFloatSoft 3.6s ease-in-out infinite;
+  will-change: transform;
 }
 
 .intro-logo-img {
-  width: 100%;
-  max-width: 320px;
+  width: 220px;
+  max-width: 100%;
   height: auto;
   object-fit: contain;
   display: block;
   margin: 0 auto 18px;
-  transform: none;
-  animation: none;
-  filter: drop-shadow(0 0 14px rgba(142, 162, 255, 0.18));
+  filter:
+    drop-shadow(0 0 14px rgba(142, 162, 255, 0.18))
+    drop-shadow(0 0 24px rgba(98, 126, 255, 0.10));
   backface-visibility: hidden;
+  transform: translateZ(0);
+  animation: fadeZoom 1.25s ease;
 }
 
 .intro-title {
@@ -132,12 +158,14 @@ button {
   margin-bottom: 8px;
   color: #eef4ff;
   line-height: 1.2;
+  letter-spacing: 0.5px;
 }
 
 .intro-subtitle {
   color: var(--text-soft);
   font-size: 1rem;
   line-height: 1.6;
+  opacity: 0.92;
 }
 
 @keyframes introFadeUp {
@@ -160,18 +188,14 @@ button {
   }
 }
 
-@media (max-width: 768px) {
-  .intro-logo-wrap {
-    width: 250px;
-    max-width: 80vw;
+@keyframes fadeZoom {
+  from {
+    opacity: 0;
+    transform: scale(0.72);
   }
-
-  .intro-title {
-    font-size: 1.8rem;
-  }
-
-  .intro-subtitle {
-    font-size: 0.95rem;
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }
 
@@ -207,9 +231,6 @@ button {
   transition: 0.3s ease;
 }
 
-.brand-logo-img:hover {
-  filter: drop-shadow(0 0 28px rgba(100, 150, 255, 0.9));
-}
 .brand-logo-img:hover {
   filter: drop-shadow(0 0 28px rgba(100, 150, 255, 0.9));
 }
@@ -1383,15 +1404,6 @@ button {
   }
 }
 
-@keyframes floatLogo {
-  0%, 100% {
-    transform: translateY(0px) scale(1);
-  }
-  50% {
-    transform: translateY(-8px) scale(1.02);
-  }
-}
-
 @keyframes socialFloat {
   0%, 100% {
     transform: translateY(0);
@@ -1421,6 +1433,54 @@ button {
     transform: translateX(120%);
     opacity: 0;
   }
+}
+
+.product-card {
+  transition: 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.whatsapp-btn {
+  position: fixed;
+  bottom: 22px;
+  left: 22px;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  color: #ffffff;
+  font-size: 1.45rem;
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow:
+    0 10px 24px rgba(18, 140, 126, 0.35),
+    0 0 18px rgba(37, 211, 102, 0.18);
+  z-index: 9999;
+  transition: opacity 0.35s ease, transform 0.35s ease, box-shadow 0.3s ease;
+}
+
+.whatsapp-btn:hover {
+  transform: translateY(-4px) scale(1.06);
+  box-shadow:
+    0 14px 30px rgba(18, 140, 126, 0.42),
+    0 0 24px rgba(37, 211, 102, 0.24);
+}
+
+.whatsapp-btn i {
+  line-height: 1;
+}
+
+body.intro-active .whatsapp-btn {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px);
 }
 
 /* responsive */
@@ -1473,19 +1533,20 @@ button {
 
   .intro-logo-wrap {
     width: 250px;
+    max-width: 82vw;
   }
 
   .intro-logo-img {
-    width: 150px;
+    width: 170px;
     max-width: 75%;
   }
 
   .intro-title {
-    font-size: 22px;
+    font-size: 1.75rem;
   }
 
   .intro-subtitle {
-    font-size: 13px;
+    font-size: 0.92rem;
   }
 
   .product-main-image {
@@ -1518,110 +1579,12 @@ button {
     max-width: unset;
     font-size: 14px;
   }
-}
-.intro-logo-img {
-  width: 220px !important;
-  height: auto !important;
-  margin-bottom: 20px;
-  animation: fadeZoom 1.5s ease;
-}
 
-@keyframes fadeZoom {
-  from {
-    opacity: 0;
-    transform: scale(0.6);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-.intro-logo-img {
-  width: 220px !important;
-  height: auto !important;
-  margin-bottom: 20px;
-  animation: fadeZoom 1.5s ease;
-}
-
-@keyframes fadeZoom {
-  from {
-    opacity: 0;
-    transform: scale(0.6);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-.product-card {
-  transition: 0.3s ease;
-}
-
-.product-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-}
-.whatsapp-btn {
-  position: fixed;
-  bottom: 22px;
-  left: 22px;
-  width: 58px;
-  height: 58px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, #25D366, #128C7E);
-  color: #ffffff;
-  font-size: 1.45rem;
-  text-decoration: none;
-  border: 1px solid rgba(255, 255, 255, 0.10);
-  box-shadow:
-    0 10px 24px rgba(18, 140, 126, 0.35),
-    0 0 18px rgba(37, 211, 102, 0.18);
-  z-index: 9999;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.whatsapp-btn:hover {
-  transform: translateY(-4px) scale(1.06);
-  box-shadow:
-    0 14px 30px rgba(18, 140, 126, 0.42),
-    0 0 24px rgba(37, 211, 102, 0.24);
-}
-
-.whatsapp-btn i {
-  line-height: 1;
-}
-.intro-content {
-  animation: introFadeUp 0.9s ease;
-}
-
-body.intro-active .whatsapp-btn {
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(20px);
-}
-
-.whatsapp-btn {
-  transition: opacity 0.35s ease, transform 0.35s ease, box-shadow 0.3s ease;
-}
-@keyframes introFadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(22px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes logoFloatSoft {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-6px);
+  .whatsapp-btn {
+    width: 54px;
+    height: 54px;
+    bottom: 18px;
+    left: 18px;
+    font-size: 1.3rem;
   }
 }
