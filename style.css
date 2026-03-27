@@ -92,12 +92,6 @@ button {
   visibility: hidden;
 }
 
-.intro-overlay {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.03), transparent 46%);
-}
-
 .intro-content {
   position: relative;
   z-index: 2;
@@ -117,6 +111,7 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
+  animation: logoFloatSoft 3.2s ease-in-out infinite;
 }
 
 .intro-logo-img {
@@ -133,14 +128,51 @@ button {
 }
 
 .intro-title {
-  font-size: 34px;
-  margin-bottom: 15px;
+  font-size: 2rem;
+  margin-bottom: 8px;
   color: #eef4ff;
+  line-height: 1.2;
 }
 
 .intro-subtitle {
   color: var(--text-soft);
-  font-size: 14px;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+@keyframes introFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes logoFloatSoft {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@media (max-width: 768px) {
+  .intro-logo-wrap {
+    width: 250px;
+    max-width: 80vw;
+  }
+
+  .intro-title {
+    font-size: 1.8rem;
+  }
+
+  .intro-subtitle {
+    font-size: 0.95rem;
+  }
 }
 
 /* header */
