@@ -31,9 +31,9 @@ html {
 
 body {
   background:
-  linear-gradient(135deg, #020617, #030a1a 45%, #040c20 75%, #020617),
-  radial-gradient(circle at 25% 20%, rgba(80, 120, 255, 0.05), transparent 30%),
-  radial-gradient(circle at 75% 30%, rgba(60, 100, 255, 0.04), transparent 30%);
+    linear-gradient(135deg, #020617, #030a1a 45%, #040c20 75%, #020617),
+    radial-gradient(circle at 25% 20%, rgba(80, 120, 255, 0.05), transparent 30%),
+    radial-gradient(circle at 75% 30%, rgba(60, 100, 255, 0.04), transparent 30%);
   color: var(--text);
   min-height: 100vh;
   overflow-x: hidden;
@@ -412,9 +412,12 @@ button {
 
 .search-box input {
   flex: 1;
-  background: transparent;
-  color: var(--text);
+  background: rgba(10, 18, 40, 0.7);
+  color: #e6ebff;
   font-size: 0.96rem;
+  border: 1px solid rgba(120, 150, 255, 0.15);
+  border-radius: 14px;
+  padding: 0 14px;
 }
 
 .search-box input::placeholder {
@@ -540,11 +543,12 @@ button {
 .product-info h3 {
   font-size: 1.06rem;
   margin-bottom: 8px;
-  color: #f1f6ff;
+  color: #e6ebff;
+  font-weight: 600;
 }
 
 .product-info p {
-  color: var(--text-soft);
+  color: #9aa4d6;
   font-size: 0.9rem;
   line-height: 1.8;
   min-height: 48px;
@@ -559,9 +563,9 @@ button {
 }
 
 .price {
-  color: #ffffff;
+  color: #7fa0ff;
   font-size: 1.12rem;
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .product-card-view-btn {
@@ -1333,13 +1337,13 @@ button {
 }
 
 .add-cart-btn {
-  background: linear-gradient(135deg, var(--primary), var(--primary-2));
+  background: linear-gradient(135deg, #5f7cff, #3f5cff);
   color: #ffffff;
-  opacity: 0.95;
+  opacity: 1;
 }
 
 .add-cart-btn:hover {
-  background: linear-gradient(135deg, #8499ff, #5672ff);
+  background: linear-gradient(135deg, #6b86ff, #4866ff);
   opacity: 1;
 }
 
@@ -1432,15 +1436,6 @@ button {
     transform: translateX(120%);
     opacity: 0;
   }
-}
-
-.product-card {
-  transition: 0.3s ease;
-}
-
-.product-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
 .whatsapp-btn {
@@ -1585,5 +1580,9 @@ body.intro-active .whatsapp-btn {
     bottom: 18px;
     left: 18px;
     font-size: 1.3rem;
+  }
+
+  .search-box input {
+    padding: 0 12px;
   }
 }
