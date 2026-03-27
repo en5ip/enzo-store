@@ -14,13 +14,11 @@
   />
 
   <link rel="stylesheet" href="style.css" />
-
-
 </head>
 
 <body class="intro-active" data-page="home">
 
-  <div class="intro-screen" id="introScreen" style="opacity:0;">
+  <div class="intro-screen" id="introScreen" aria-hidden="true">
     <div class="intro-overlay"></div>
     <div class="intro-content">
       <div class="intro-logo-wrap">
@@ -194,24 +192,64 @@
     </div>
   </footer>
 
-  <script src="script.js"></script>
-
-<script>
-  window.addEventListener("load", () => {
-    const intro = document.getElementById("introScreen");
-    const body = document.body;
-
-    setTimeout(() => {
-      intro.classList.add("hide");
-      body.classList.remove("intro-active");
-    }, 2500);
-  });
-</script>
-  
   <div id="toastContainer" class="toast-container"></div>
 
   <a href="https://wa.me/XXXXXXXXXXX" class="whatsapp-btn" target="_blank" title="واتساب">
     <i class="fa-brands fa-whatsapp"></i>
   </a>
+
+  <script src="script.js"></script>
+
+  <script>
+    (function () {
+      const intro = document.getElementById("introScreen");
+      const body = document.body;
+
+      if (!intro) {
+        body.classList.remove("intro-active");
+        return;
+      }
+
+      const MIN_INTRO_TIME = 2200;
+      const FADE_OUT_DELAY = 120;
+      const startedAt = performance.now();
+
+      function hideIntro() {
+        const elapsed = performance.now() - startedAt;
+        const remaining = Math.max(0, MIN_INTRO_TIME - elapsed);
+
+        setTimeout(() => {
+          intro.classList.add("show");
+
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              intro.classList.add("hide");
+
+              setTimeout(() => {
+                body.classList.remove("intro-active");
+                intro.style.display = "none";
+              }, 900);
+            });
+          });
+        }, remaining + FADE_OUT_DELAY);
+      }
+
+      function revealIntroFirst() {
+        requestAnimationFrame(() => {
+          intro.classList.add("show");
+        });
+      }
+
+      if (document.readyState === "complete") {
+        revealIntroFirst();
+        setTimeout(hideIntro, 100);
+      } else {
+        window.addEventListener("load", () => {
+          revealIntroFirst();
+          setTimeout(hideIntro, 100);
+        });
+      }
+    })();
+  </script>
 </body>
 </html>
