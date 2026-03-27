@@ -164,12 +164,19 @@ button {
 }
 
 .brand-logo-img {
-  width: 110px;
-  height: auto;
+  width: 56px;
+  height: 56px;
   object-fit: contain;
   flex-shrink: 0;
-  transform: scale(1.1);
-  filter: drop-shadow(0 0 20px rgba(142, 162, 255, 0.35));
+  filter: drop-shadow(0 0 18px rgba(100, 150, 255, 0.5));
+  transition: 0.3s ease;
+}
+
+.brand-logo-img:hover {
+  filter: drop-shadow(0 0 28px rgba(100, 150, 255, 0.9));
+}
+.brand-logo-img:hover {
+  filter: drop-shadow(0 0 28px rgba(100, 150, 255, 0.9));
 }
 
 .brand-text h1 {
@@ -1476,4 +1483,58 @@ button {
     max-width: unset;
     font-size: 14px;
   }
+}
+.intro-logo-img {
+  width: 220px !important;
+  height: auto !important;
+  margin-bottom: 20px;
+  animation: fadeZoom 1.5s ease;
+}
+
+@keyframes fadeZoom {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.intro-logo-img {
+  width: 220px !important;
+  height: auto !important;
+  margin-bottom: 20px;
+  animation: fadeZoom 1.5s ease;
+}
+
+@keyframes fadeZoom {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.product-card {
+  transition: 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+.whatsapp-btn {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background: #25D366;
+  color: white;
+  padding: 14px;
+  border-radius: 50%;
+  font-size: 20px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.4);
+  z-index: 999;
 }
