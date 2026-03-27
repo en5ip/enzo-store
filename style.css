@@ -128,7 +128,7 @@ button {
   display: block;
   margin: 0 auto 18px;
   transform: none;
-  filter: drop-shadow(0 0 18px rgba(142, 162, 255, 0.22));
+  filter: drop-shadow(0 0 12px rgba(142, 162, 255, 0.16));
   image-rendering: auto;
 }
 .intro-title {
