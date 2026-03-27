@@ -276,14 +276,16 @@
   <script src="script.js"></script>
 
   <script>
-    window.addEventListener("load", () => {
-      const intro = document.getElementById("introScreen");
+  window.addEventListener("load", () => {
+    const intro = document.getElementById("introScreen");
+    const body = document.body;
 
-      setTimeout(() => {
-        intro.classList.add("hide");
-      }, 3500);
-    });
-  </script>
+    setTimeout(() => {
+      intro.classList.add("hide");
+      body.classList.remove("intro-active");
+    }, 3500);
+  });
+</script>
 
   <div id="toastContainer" class="toast-container"></div>
   
