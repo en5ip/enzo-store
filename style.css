@@ -31,10 +31,9 @@ html {
 
 body {
   background:
-    radial-gradient(circle at top right, rgba(72, 108, 255, 0.14), transparent 22%),
-    radial-gradient(circle at top left, rgba(34, 66, 190, 0.10), transparent 18%),
-    radial-gradient(circle at bottom left, rgba(83, 120, 255, 0.10), transparent 20%),
-    linear-gradient(135deg, var(--bg-1), var(--bg-2) 38%, var(--bg-3) 68%, #030611);
+  linear-gradient(135deg, #020617, #030a1a 45%, #040c20 75%, #020617),
+  radial-gradient(circle at 25% 20%, rgba(80, 120, 255, 0.05), transparent 30%),
+  radial-gradient(circle at 75% 30%, rgba(60, 100, 255, 0.04), transparent 30%);
   color: var(--text);
   min-height: 100vh;
   overflow-x: hidden;
@@ -364,10 +363,10 @@ button {
   justify-content: center;
   padding: 13px 24px;
   border-radius: 14px;
-  background: linear-gradient(135deg, var(--primary), var(--primary-2));
-  color: #06101b;
+  background: linear-gradient(135deg, #5f7cff, #3f5cff);
+  color: #ffffff;
+  box-shadow: 0 6px 18px rgba(80, 110, 255, 0.25);
   font-weight: 800;
-  box-shadow: 0 12px 28px rgba(83, 117, 255, 0.22);
   transition: 0.25s ease;
 }
 
@@ -376,7 +375,7 @@ button {
 .add-cart-btn:hover,
 .product-detail-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 14px 30px rgba(83, 117, 255, 0.28);
+  box-shadow: 0 8px 20px rgba(80, 110, 255, 0.35);
 }
 
 .secondary-btn,
@@ -468,19 +467,19 @@ button {
 
 .product-card {
   position: relative;
-  background: rgba(255, 255, 255, 0.045);
-  border: 1px solid rgba(122, 150, 255, 0.10);
+  background: rgba(10, 18, 40, 0.85);
+  border: 1px solid rgba(120, 150, 255, 0.15);
   border-radius: 22px;
   overflow: hidden;
   transition: 0.3s ease;
   backdrop-filter: blur(10px);
-  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8);
 }
 
 .product-card:hover {
-  transform: translateY(-8px);
-  border-color: rgba(142, 162, 255, 0.24);
-  box-shadow: 0 16px 34px rgba(21, 38, 105, 0.28);
+  transform: translateY(-6px);
+  border-color: rgba(140, 170, 255, 0.35);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8);
 }
 
 .product-card-link {
