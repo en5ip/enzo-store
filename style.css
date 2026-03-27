@@ -111,24 +111,26 @@ button {
 }
 
 .intro-logo-wrap {
-  width: 650px;
-  max-width: 90%;
-  margin: 60px auto 20px;
+  width: 320px;
+  max-width: 82vw;
+  margin: 0 auto 18px;
   display: flex;
   justify-content: center;
   align-items: center;
+  animation: floatLogo 3s ease-in-out infinite;
 }
 
 .intro-logo-img {
-  width: 320px;
-  max-width: 80%;
+  width: 100%;
+  max-width: 320px;
   height: auto;
   object-fit: contain;
-  transform: scale(1.2);
-  filter: drop-shadow(0 0 35px rgba(120, 160, 255, 0.5));
-  margin-bottom: 20px;
+  display: block;
+  margin: 0 auto 18px;
+  transform: none;
+  filter: drop-shadow(0 0 18px rgba(142, 162, 255, 0.22));
+  image-rendering: auto;
 }
-
 .intro-title {
   font-size: 34px;
   margin-bottom: 15px;
@@ -1528,13 +1530,33 @@ button {
 }
 .whatsapp-btn {
   position: fixed;
-  bottom: 20px;
-  left: 20px;
-  background: #25D366;
-  color: white;
-  padding: 14px;
+  bottom: 22px;
+  left: 22px;
+  width: 58px;
+  height: 58px;
   border-radius: 50%;
-  font-size: 20px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.4);
-  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  color: #ffffff;
+  font-size: 1.45rem;
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow:
+    0 10px 24px rgba(18, 140, 126, 0.35),
+    0 0 18px rgba(37, 211, 102, 0.18);
+  z-index: 9999;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.whatsapp-btn:hover {
+  transform: translateY(-4px) scale(1.06);
+  box-shadow:
+    0 14px 30px rgba(18, 140, 126, 0.42),
+    0 0 24px rgba(37, 211, 102, 0.24);
+}
+
+.whatsapp-btn i {
+  line-height: 1;
 }
