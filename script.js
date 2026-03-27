@@ -220,9 +220,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function getProductBadge(product) {
-    if (!product?.details) return "";
-    if (product.details.availability === "متوفر") return "جاهز";
-    return product.details.availability || "";
+    return "";
   }
 
   function initShared() {
