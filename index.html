@@ -276,20 +276,18 @@
 
   <script src="script.js"></script>
 
-  <script>
-window.addEventListener("load", () => {
-  const intro = document.getElementById("introScreen");
-  const body = document.body;
+<script>
+  window.addEventListener("load", () => {
+    const intro = document.getElementById("introScreen");
+    const body = document.body;
 
-  intro.style.opacity = "1";
-
-  setTimeout(() => {
-    intro.classList.add("hide");
-    body.classList.remove("intro-active");
-  }, 2500);
-});
+    setTimeout(() => {
+      intro.classList.add("hide");
+      body.classList.remove("intro-active");
+    }, 2000);
+  });
 </script>
-
+  
   <div id="toastContainer" class="toast-container"></div>
 
   <a href="https://wa.me/XXXXXXXXXXX" class="whatsapp-btn" target="_blank" title="واتساب">
