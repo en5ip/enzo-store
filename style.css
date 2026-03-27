@@ -108,8 +108,7 @@ button {
   justify-content: center;
   text-align: center;
   margin-top: 18px;
-  animation: none;
-  transform: none;
+  animation: introFadeUp 1.2s ease;
 }
 
 .intro-logo-wrap {
@@ -119,8 +118,6 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: none;
-  transform: none;
 }
 
 .intro-logo-img {
@@ -130,9 +127,9 @@ button {
   object-fit: contain;
   display: block;
   margin: 0 auto 18px;
-  transform: scale(1.18);
-  animation: smoothZoom 2.8s ease-out forwards;
-  filter: none;
+  transform: none;
+  animation: none;
+  filter: drop-shadow(0 0 10px rgba(142, 162, 255, 0.14));
   image-rendering: auto;
   backface-visibility: hidden;
 }
@@ -1580,13 +1577,24 @@ button {
     transform: translateY(0);
   }
 }
-@keyframes smoothZoom {
-  0% {
-    transform: scale(0.7);
+
+@keyframes introFadeUp {
+  from {
     opacity: 0;
+    transform: translateY(18px);
   }
-  100% {
-    transform: scale(1.18);
+  to {
     opacity: 1;
+    transform: translateY(0);
   }
+}
+
+body.intro-active .whatsapp-btn {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px);
+}
+
+.whatsapp-btn {
+  transition: opacity 0.35s ease, transform 0.35s ease, box-shadow 0.3s ease;
 }
