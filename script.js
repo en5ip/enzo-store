@@ -214,11 +214,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function initShared() {
-    if (el.introScreen) {
-      setTimeout(() => {
-        el.introScreen.classList.add("hide");
-      }, 2200);
-    }
+    initIntroFallback();
 
     bindIf(el.cartBtn, "click", openCart);
     bindIf(el.closeCartBtn, "click", closeCart);
@@ -245,6 +241,36 @@ document.addEventListener("DOMContentLoaded", () => {
         closeDeleteConfirm();
       }
     });
+  }
+
+  function initIntroFallback() {
+    if (!el.introScreen) return;
+
+    requestAnimationFrame(() => {
+      if (!el.introScreen.classList.contains("show")) {
+        el.introScreen.classList.add("show");
+      }
+    });
+
+    setTimeout(() => {
+      const introHiddenByInlineScript =
+        el.introScreen.classList.contains("hide") ||
+        el.introScreen.style.display === "none";
+
+      if (introHiddenByInlineScript) {
+        document.body.classList.remove("intro-active");
+        return;
+      }
+
+      el.introScreen.classList.add("hide");
+
+      setTimeout(() => {
+        if (el.introScreen && el.introScreen.style.display !== "none") {
+          el.introScreen.style.display = "none";
+        }
+        document.body.classList.remove("intro-active");
+      }, 900);
+    }, 2400);
   }
 
   function initHomePage() {
