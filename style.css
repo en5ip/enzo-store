@@ -127,9 +127,10 @@ button {
   object-fit: contain;
   display: block;
   margin: 0 auto 18px;
-  transform: none;
-  filter: drop-shadow(0 0 12px rgba(142, 162, 255, 0.16));
+  transform: translateZ(0);
+  backface-visibility: hidden;
   image-rendering: auto;
+  filter: drop-shadow(0 0 10px rgba(142, 162, 255, 0.14));
 }
 .intro-title {
   font-size: 34px;
