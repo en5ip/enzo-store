@@ -107,7 +107,7 @@ button {
   justify-content: center;
   text-align: center;
   margin-top: 18px;
-  animation: introFadeUp 1.2s ease;
+  animation: none;
 }
 
 .intro-logo-wrap {
@@ -128,7 +128,7 @@ button {
   margin: 0 auto 18px;
   transform: none;
   animation: none;
-  filter: drop-shadow(0 0 10px rgba(142, 162, 255, 0.14));
+  filter: none;
   image-rendering: auto;
   backface-visibility: hidden;
 }
@@ -1564,18 +1564,6 @@ button {
 }
 .intro-content {
   animation: introFadeUp 0.9s ease;
-}
-
-
-@keyframes introFadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(18px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 body.intro-active .whatsapp-btn {
