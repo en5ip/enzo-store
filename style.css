@@ -478,6 +478,8 @@ button {
   backdrop-filter: blur(12px);
   box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85);
   isolation: isolate;
+  transform-origin: center;
+  will-change: transform;
 }
 
 .product-card::before {
