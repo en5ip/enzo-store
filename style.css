@@ -515,11 +515,9 @@ button {
 }
 
 .product-card:hover {
-  transform: translateY(-8px) scale(1.01);
-  border-color: rgba(140, 170, 255, 0.42);
-  box-shadow:
-    0 34px 80px rgba(0, 0, 0, 0.95),
-    0 0 0 1px rgba(142, 162, 255, 0.06);
+  transform: translateY(-10px) scale(1.03);
+  border-color: rgba(140, 170, 255, 0.35);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
 }
 
 .product-card:hover::before {
