@@ -97,7 +97,8 @@
     }
   </style>
 </head>
-<body data-page="home">
+
+<body class="intro-active" data-page="home">
 
   <div class="intro-screen" id="introScreen">
     <div class="intro-overlay"></div>
@@ -276,21 +277,21 @@
   <script src="script.js"></script>
 
   <script>
-  window.addEventListener("load", () => {
-    const intro = document.getElementById("introScreen");
-    const body = document.body;
+    window.addEventListener("load", () => {
+      const intro = document.getElementById("introScreen");
+      const body = document.body;
 
-    setTimeout(() => {
-      intro.classList.add("hide");
-      body.classList.remove("intro-active");
-    }, 3500);
-  });
-</script>
+      setTimeout(() => {
+        intro.classList.add("hide");
+        body.classList.remove("intro-active");
+      }, 3500);
+    });
+  </script>
 
   <div id="toastContainer" class="toast-container"></div>
-  
- <a href="https://wa.me/XXXXXXXXXXX" class="whatsapp-btn" target="_blank" title="واتساب">
-  <i class="fa-brands fa-whatsapp"></i>
-</a>
+
+  <a href="https://wa.me/XXXXXXXXXXX" class="whatsapp-btn" target="_blank" title="واتساب">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
 </body>
 </html>
