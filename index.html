@@ -100,7 +100,7 @@
 
 <body class="intro-active" data-page="home">
 
-  <div class="intro-screen" id="introScreen">
+  <div class="intro-screen" id="introScreen" style="opacity:0;">
     <div class="intro-overlay"></div>
     <div class="intro-content">
       <div class="intro-logo-wrap">
@@ -277,16 +277,18 @@
   <script src="script.js"></script>
 
   <script>
-    window.addEventListener("load", () => {
-      const intro = document.getElementById("introScreen");
-      const body = document.body;
+window.addEventListener("load", () => {
+  const intro = document.getElementById("introScreen");
+  const body = document.body;
 
-      setTimeout(() => {
-        intro.classList.add("hide");
-        body.classList.remove("intro-active");
-      }, 3500);
-    });
-  </script>
+  intro.style.opacity = "1";
+
+  setTimeout(() => {
+    intro.classList.add("hide");
+    body.classList.remove("intro-active");
+  }, 2500);
+});
+</script>
 
   <div id="toastContainer" class="toast-container"></div>
 
