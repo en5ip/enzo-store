@@ -466,6 +466,7 @@ button {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 26px;
+  align-items: start;
 }
 
 .product-card {
@@ -480,6 +481,7 @@ button {
   isolation: isolate;
   transform-origin: center center;
   will-change: transform;
+  z-index: 1;
 }
 
 .product-card::before {
@@ -524,11 +526,12 @@ button {
 }
 
 .product-card:hover {
-  transform: translateY(-10px) scale(1.06);
+  transform: translateY(-10px) scale(1.08);
   border-color: rgba(160, 185, 255, 0.45);
   box-shadow:
     0 25px 60px rgba(0, 0, 0, 0.8),
     0 0 22px rgba(110, 145, 255, 0.12);
+  z-index: 10;
 }
 
 .product-card:hover::before {
